@@ -18,9 +18,6 @@ jobs:
             - ./vendor
       - run: ./bin/phpunit
   build:
-    branches:
-      only:
-        - build
     machine: true
     steps:
       - checkout
@@ -29,3 +26,19 @@ jobs:
           docker build -t abeatrice/circle:$TAG .
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
           docker push abeatrice/circle:$TAG
+workflows:
+  version: 2
+  test-build:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore: 
+                - develop
+                - /feature-.*/
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: build
