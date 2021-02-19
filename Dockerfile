@@ -13,9 +13,6 @@ RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -
 COPY . ./
 RUN composer dump-autoload --no-scripts --no-dev --optimize
 
-# ADD ./ .
-# RUN php /usr/local/bin/composer install
-
 # make app globally executable
 RUN ln -s /app/app /usr/local/bin/app
 
