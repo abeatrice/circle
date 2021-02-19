@@ -5,6 +5,6 @@ namespace App\Services;
 class Greeter
 {
     public function getGreeting() {
-        return 'hello';
+        return 'cause fail';
     }
 }
